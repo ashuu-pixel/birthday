@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>For Aiman ❤️</title>
+    <title>For Aimen ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -13,40 +13,418 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
+
+    <style>
+
+        /* =========================================
+           MULTI SCREEN DESIGN
+        ========================================= */
+
+        .birthday-page {
+            display: none;
+            min-height: 100vh;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px 20px;
+            animation: pageIn 0.8s ease;
+        }
+
+        .birthday-page.active {
+            display: flex;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-box {
+            width: min(900px, 95%);
+            margin: auto;
+        }
+
+        .page-number {
+            font-size: 13px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #a65372;
+            margin-bottom: 25px;
+        }
+
+        .page-title {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(55px, 9vw, 100px);
+            color: #8e3459;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .page-title span {
+            color: #e25383;
+        }
+
+        .page-text {
+            max-width: 650px;
+            margin: 0 auto 35px;
+            color: #80616e;
+            font-size: 17px;
+            line-height: 2;
+        }
+
+        .next-button,
+        .back-button {
+            border: none;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-family: "Montserrat", sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            margin: 8px;
+        }
+
+        .next-button {
+            background: linear-gradient(135deg, #e75a88, #a93768);
+            color: white;
+            box-shadow: 0 15px 35px rgba(169,55,104,0.25);
+        }
+
+        .back-button {
+            background: white;
+            color: #a93768;
+            border: 1px solid #edb7ca;
+        }
+
+        .next-button:hover,
+        .back-button:hover {
+            transform: translateY(-4px);
+        }
+
+        /* PAGE 1 */
+
+        #page1 {
+            background:
+                radial-gradient(circle at 20% 20%, #ffd8e8, transparent 30%),
+                radial-gradient(circle at 80% 80%, #e8dcff, transparent 30%),
+                #fff7fb;
+        }
+
+        .big-heart {
+            font-size: 85px;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 20px;
+        }
+
+        /* PAGE 2 */
+
+        #page2 {
+            background:
+                radial-gradient(circle at 80% 20%, #ffe4ef, transparent 30%),
+                #fff8fb;
+        }
+
+        .waiting {
+            font-size: 85px;
+            margin-bottom: 20px;
+            animation: floating 3s infinite ease-in-out;
+        }
+
+        @keyframes floating {
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* PAGE 3 */
+
+        #page3 {
+            background:
+                radial-gradient(circle at 20% 80%, #eee3ff, transparent 30%),
+                #fff8fb;
+        }
+
+        .gift {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        /* PAGE 4 */
+
+        #page4 {
+            background:
+                radial-gradient(circle at center, #ffe0eb, #fff7fb 65%);
+        }
+
+        .birthday-big {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(65px, 11vw, 120px);
+            color: #8e3459;
+            line-height: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .birthday-big span {
+            color: #e25383;
+        }
+
+        .cake-big {
+            font-size: 110px;
+            margin-bottom: 20px;
+            animation: floating 2.5s infinite ease-in-out;
+        }
+
+        /* PAGE 5 MEMORIES */
+
+        #page5 {
+            display: none;
+            min-height: 100vh;
+            padding: 80px 20px;
+            background: #fff8fb;
+        }
+
+        #page5.active {
+            display: block;
+        }
+
+        .memory-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .memory-heading h2 {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(55px, 8vw, 85px);
+            color: #8e3459;
+            margin: 10px 0;
+        }
+
+        .memory-heading p {
+            color: #80616e;
+            line-height: 1.8;
+        }
+
+        .new-gallery {
+            width: min(1050px, 95%);
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 35px;
+        }
+
+        .new-memory-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(100,40,70,0.10);
+            transition: 0.4s;
+        }
+
+        .new-memory-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .new-photo {
+            height: 300px;
+            background: #fff1f7;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .new-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 18px;
+        }
+
+        .new-memory-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .new-memory-info small {
+            color: #c15b82;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .new-memory-info h3 {
+            font-family: "Dancing Script", cursive;
+            font-size: 30px;
+            color: #8e3459;
+            margin: 10px 0;
+        }
+
+        .new-memory-info p {
+            color: #80616e;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* PAGE 6 LETTER */
+
+        #page6 {
+            background:
+                radial-gradient(circle at 20% 20%, #ffe5ef, transparent 30%),
+                #fff8fb;
+        }
+
+        .letter-box {
+            width: min(850px, 95%);
+            margin: auto;
+            background: white;
+            padding: 55px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(100,40,70,0.12);
+            text-align: left;
+        }
+
+        .letter-box h2 {
+            font-family: "Dancing Script", cursive;
+            font-size: 48px;
+            color: #8e3459;
+            margin-bottom: 25px;
+        }
+
+        .letter-box p {
+            color: #624b55;
+            line-height: 2;
+            margin-bottom: 22px;
+        }
+
+        .letter-box strong {
+            color: #a93768;
+        }
+
+        .signature {
+            font-family: "Dancing Script", cursive;
+            font-size: 30px;
+            color: #a93768;
+        }
+
+        /* PAGE 7 */
+
+        #page7 {
+            background:
+                radial-gradient(circle at 20% 20%, #ffd8e8, transparent 30%),
+                radial-gradient(circle at 80% 80%, #e8dcff, transparent 30%),
+                #fff7fb;
+        }
+
+        .final-cake {
+            font-size: 130px;
+            animation: cakeBounce 1.5s infinite ease-in-out;
+        }
+
+        @keyframes cakeBounce {
+            0%,100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(2deg);
+            }
+        }
+
+        .final-title {
+            font-family: "Dancing Script", cursive;
+            font-size: clamp(55px, 9vw, 90px);
+            color: #8e3459;
+            margin: 20px 0;
+        }
+
+        .final-hearts {
+            font-size: 35px;
+            margin-top: 30px;
+            letter-spacing: 10px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .new-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .new-photo {
+                height: 250px;
+            }
+
+            .letter-box {
+                padding: 30px 22px;
+            }
+
+            .letter-box h2 {
+                font-size: 40px;
+            }
+
+            .page-text {
+                font-size: 15px;
+            }
+
+            .birthday-page {
+                padding: 35px 15px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-    <!-- FLOATING HEARTS -->
     <div class="hearts"></div>
 
 
-    <!-- INTRO SCREEN -->
+    <!-- =====================================
+         PAGE 1
+    ====================================== -->
 
-    <section id="intro" class="intro">
+    <section id="page1" class="birthday-page active">
 
-        <div class="intro-content">
+        <div class="page-box">
 
-            <div class="tiny-heart">♡</div>
+            <div class="big-heart">
+                ❤️
+            </div>
 
-            <p class="intro-small">
-                Someone made something special for you...
-            </p>
+            <div class="page-number">
+                A little surprise for you
+            </div>
 
-            <h1>
-                Hey Aiman
+            <h1 class="page-title">
+                Hey Aimen
                 <span>❤️</span>
             </h1>
 
-            <p class="intro-text">
-                Before you continue...
+            <p class="page-text">
+                Someone made something special for you...
                 <br>
-                promise me you'll smile.
+                So before you continue, promise me you'll smile. 🥹💕
             </p>
 
-            <button id="startButton">
-                Open your surprise 💌
+            <button class="next-button" onclick="goToPage(2)">
+                Open Your Surprise 💌
             </button>
 
         </div>
@@ -54,851 +432,980 @@
     </section>
 
 
+    <!-- =====================================
+         PAGE 2
+    ====================================== -->
 
-    <!-- MAIN WEBSITE -->
+    <section id="page2" class="birthday-page">
 
-    <main id="website" class="hidden">
+        <div class="page-box">
+
+            <div class="waiting">
+                👀
+            </div>
+
+            <div class="page-number">
+                Wait a second...
+            </div>
+
+            <h1 class="page-title">
+                Wait...
+                <span>🥹</span>
+            </h1>
+
+            <p class="page-text">
+                You can't just jump straight to the surprise! 😂
+                <br><br>
+                There are a few little things I want you to see first.
+                <br>
+                So take your time... this is made just for you. 💗
+            </p>
+
+            <button class="back-button" onclick="goToPage(1)">
+                ← Back
+            </button>
+
+            <button class="next-button" onclick="goToPage(3)">
+                Okay, Continue ✨
+            </button>
+
+        </div>
+
+    </section>
 
 
-        <!-- HERO -->
+    <!-- =====================================
+         PAGE 3
+    ====================================== -->
 
-        <section class="hero">
+    <section id="page3" class="birthday-page">
 
-            <div class="hero-overlay"></div>
+        <div class="page-box">
 
-            <div class="hero-content">
+            <div class="gift">
+                🎁
+            </div>
 
-                <p class="hero-small">
-                    September 25th • A very special day
-                </p>
+            <div class="page-number">
+                One little thing...
+            </div>
 
-                <h1>
-                    Happy Birthday
-                    <br>
-                    <span>Aiman</span>
-                </h1>
+            <h1 class="page-title">
+                Before the
+                <span>Birthday 🎂</span>
+            </h1>
 
-                <p class="hero-description">
+            <p class="page-text">
 
-                    Today isn't just another day...
+                I just want you to know that you are genuinely
+                one of the most special people in my life. ❤️
 
-                    <br>
+                <br><br>
 
-                    Today is the day the world got
-                    a little brighter because of you. ✨
+                Thank you for every laugh, every stupid conversation,
+                every memory and every little moment.
 
-                </p>
+                <br><br>
 
-                <div class="scroll">
-                    ↓
+                Ab ready ho? 👀💗
+
+            </p>
+
+            <button class="back-button" onclick="goToPage(2)">
+                ← Back
+            </button>
+
+            <button class="next-button" onclick="goToPage(4)">
+                I'm Ready 🎀
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         PAGE 4 - BIRTHDAY
+    ====================================== -->
+
+    <section id="page4" class="birthday-page">
+
+        <div class="page-box">
+
+            <div class="cake-big">
+                🎂
+            </div>
+
+            <div class="page-number">
+                Today is your day
+            </div>
+
+            <h1 class="birthday-big">
+                Happy Birthday
+                <br>
+                <span>Aimen ❤️</span>
+            </h1>
+
+            <p class="page-text">
+
+                Today isn't just another day...
+
+                <br>
+
+                Today is the day the world got
+                a little brighter because of you. ✨
+
+                <br><br>
+
+                May your smile always stay this beautiful,
+                and may this year bring you everything
+                your heart wishes for. 🤲🏻💗
+
+            </p>
+
+            <button class="next-button" onclick="goToPage(5); celebrate();">
+                See Our Memories 📸
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         PAGE 5 - MEMORIES
+    ====================================== -->
+
+    <section id="page5" class="birthday-page">
+
+        <div class="memory-heading">
+
+            <div class="page-number">
+                Little pieces of us
+            </div>
+
+            <h2>
+                Our Memories 📸
+            </h2>
+
+            <p>
+                Because some moments deserve to live forever. ❤️
+            </p>
+
+        </div>
+
+
+        <div class="new-gallery">
+
+
+            <!-- PHOTO 1 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 1.jpeg"
+                         data-root="photo 1.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #01
+                    </small>
+
+                    <h3>
+                        That One Unforgettable Day ❤️
+                    </h3>
+
+                    <p>
+                        A beautiful moment that became one of my favorite memories with you.
+                    </p>
+
                 </div>
 
             </div>
 
-        </section>
+
+            <!-- PHOTO 2 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 2.jpeg"
+                         data-root="photo 2.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #02
+                    </small>
+
+                    <h3>
+                        Our Stupidest Moments 😂
+                    </h3>
+
+                    <p>
+                        The kind of moments that make us laugh even when we remember them later.
+                    </p>
+
+                </div>
+
+            </div>
 
 
+            <!-- PHOTO 3 -->
 
-        <!-- BIRTHDAY MESSAGE -->
+            <div class="new-memory-card">
 
-        <section class="message section">
+                <div class="new-photo">
 
-            <div class="container">
+                    <img src="images/photo3.jpeg"
+                         data-root="photo3.jpeg"
+                         alt="Memory with Aimen">
 
-                <p class="label">
-                    A little message for you
-                </p>
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #03
+                    </small>
+
+                    <h3>
+                        One Of My Favorites ✨
+                    </h3>
+
+                    <p>
+                        Some pictures capture a moment, but this one captures a feeling.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 4 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 4.jpeg"
+                         data-root="photo 4.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #04
+                    </small>
+
+                    <h3>
+                        Forever A Memory 🥹
+                    </h3>
+
+                    <p>
+                        A little piece of our story that I will always keep close to my heart.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 5 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 5.jpeg"
+                         data-root="photo 5.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #05
+                    </small>
+
+                    <h3>
+                        Happiness Looks Like This 💕
+                    </h3>
+
+                    <p>
+                        One of those simple moments that somehow became really special.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 6 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 6.jpeg"
+                         data-root="photo 6.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #06
+                    </small>
+
+                    <h3>
+                        Just Us Being Us 🌸
+                    </h3>
+
+                    <p>
+                        No perfect poses, no perfect plans, just a genuinely beautiful memory.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 7 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 7.jpeg"
+                         data-root="photo 7.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #07
+                    </small>
+
+                    <h3>
+                        A Moment Worth Keeping 🦋
+                    </h3>
+
+                    <p>
+                        Some memories quietly become the ones we never want to forget.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 8 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 8.jpeg"
+                         data-root="photo 8.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #08
+                    </small>
+
+                    <h3>
+                        Little Moments, Big Memories ✨
+                    </h3>
+
+                    <p>
+                        Every little moment with you has its own special place in my heart.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 9 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 9.jpeg"
+                         data-root="photo 9.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #09
+                    </small>
+
+                    <h3>
+                        This One Makes Me Smile 💗
+                    </h3>
+
+                    <p>
+                        Looking back at this moment always brings a little smile to my face.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 10 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 10.jpeg"
+                         data-root="photo 10.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #10
+                    </small>
+
+                    <h3>
+                        Another Beautiful Chapter 📖
+                    </h3>
+
+                    <p>
+                        Just another chapter of the beautiful friendship we are still writing together.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 11 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 11.jpeg"
+                         data-root="photo 11.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #11
+                    </small>
+
+                    <h3>
+                        A Friendship To Treasure ❤️
+                    </h3>
+
+                    <p>
+                        I am grateful for every laugh, every conversation and every memory.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 12 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo12.jpeg"
+                         data-root="photo12.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #12
+                    </small>
+
+                    <h3>
+                        Forever Grateful 🌷
+                    </h3>
+
+                    <p>
+                        Thank you for being one of those people who make life a little brighter.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 13 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 13.jpeg"
+                         data-root="photo 13.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #13
+                    </small>
+
+                    <h3>
+                        More Memories To Come 🌙
+                    </h3>
+
+                    <p>
+                        This isn't the end of our memories. There are so many beautiful moments ahead.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHOTO 14 -->
+
+            <div class="new-memory-card">
+
+                <div class="new-photo">
+
+                    <img src="images/photo 14.jpeg"
+                         data-root="photo 14.jpeg"
+                         alt="Memory with Aimen">
+
+                </div>
+
+                <div class="new-memory-info">
+
+                    <small>
+                        Memory #14
+                    </small>
+
+                    <h3>
+                        Always One Of My Favorites 💞
+                    </h3>
+
+                    <p>
+                        No matter how many years pass, this will always be a special memory.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div style="text-align:center; margin-top:50px;">
+
+            <button class="back-button" onclick="goToPage(4)">
+                ← Back
+            </button>
+
+            <button class="next-button" onclick="goToPage(6)">
+                Read My Letter 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         PAGE 6 - LONG LETTER
+    ====================================== -->
+
+    <section id="page6" class="birthday-page">
+
+        <div class="page-box">
+
+            <div class="page-number">
+                From my heart ❤️
+            </div>
+
+            <div class="letter-box">
 
                 <h2>
-                    You deserve the world. 🌷
-                </h2>
-
-                <div class="message-box">
-
-                    <p>
-                        Happy Birthday, Aiman ❤️
-                    </p>
-
-                    <p>
-                        I hope you know how special you are.
-                        Not just today, but every single day.
-                    </p>
-
-                    <p>
-                        I hope this new year of your life brings
-                        you beautiful moments, genuine happiness,
-                        peaceful days and all the things you've
-                        secretly wished for.
-                    </p>
-
-                    <p>
-                        And most importantly...
-
-                        <br><br>
-
-                        I hope we make a million more memories
-                        together. 🥹💕
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- MEMORIES -->
-
-        <section class="memories section">
-
-            <div class="container">
-
-                <p class="label">
-                    Little pieces of us
-                </p>
-
-                <h2>
-                    Our Memories 📸
-                </h2>
-
-                <p class="subtitle">
-                    Because some moments deserve
-                    to live forever.
-                </p>
-
-
-                <div class="gallery">
-
-
-                    <!-- MEMORY 1 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 1.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #01
-                            </span>
-
-                            <h3>
-                                That one unforgettable day ❤️
-                            </h3>
-
-                            <p>
-                                A beautiful moment that became
-                                one of my favorite memories with you.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 2 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 2.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #02
-                            </span>
-
-                            <h3>
-                                Our stupidest moments 😂
-                            </h3>
-
-                            <p>
-                                The kind of moments that make us laugh
-                                even when we remember them later.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 3 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo3.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #03
-                            </span>
-
-                            <h3>
-                                One of my favorites ✨
-                            </h3>
-
-                            <p>
-                                Some pictures capture a moment,
-                                but this one captures a feeling.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 4 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 4.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #04
-                            </span>
-
-                            <h3>
-                                Forever a memory 🥹
-                            </h3>
-
-                            <p>
-                                A little piece of our story that
-                                I will always keep close to my heart.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 5 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 5.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #05
-                            </span>
-
-                            <h3>
-                                Happiness looks like this 💕
-                            </h3>
-
-                            <p>
-                                One of those simple moments that
-                                somehow became really special.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 6 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 6.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #06
-                            </span>
-
-                            <h3>
-                                Just us being us 🌸
-                            </h3>
-
-                            <p>
-                                No perfect poses, no perfect plans,
-                                just a genuinely beautiful memory.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 7 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 7.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #07
-                            </span>
-
-                            <h3>
-                                A moment worth keeping 🦋
-                            </h3>
-
-                            <p>
-                                Some memories quietly become the ones
-                                we never want to forget.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 8 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 8.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #08
-                            </span>
-
-                            <h3>
-                                Little moments, big memories ✨
-                            </h3>
-
-                            <p>
-                                Every little moment with you has
-                                its own special place in my heart.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 9 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 9.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #09
-                            </span>
-
-                            <h3>
-                                This one makes me smile 💗
-                            </h3>
-
-                            <p>
-                                Looking back at this moment always
-                                brings a little smile to my face.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 10 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 10.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #10
-                            </span>
-
-                            <h3>
-                                Another beautiful chapter 📖
-                            </h3>
-
-                            <p>
-                                Just another chapter of the beautiful
-                                friendship we are still writing together.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 11 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 11.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #11
-                            </span>
-
-                            <h3>
-                                A friendship to treasure ❤️
-                            </h3>
-
-                            <p>
-                                I am grateful for every laugh,
-                                every conversation and every memory.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 12 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo12.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #12
-                            </span>
-
-                            <h3>
-                                Forever grateful 🌷
-                            </h3>
-
-                            <p>
-                                Thank you for being one of those
-                                people who make life a little brighter.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 13 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 13.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #13
-                            </span>
-
-                            <h3>
-                                More memories to come 🌙
-                            </h3>
-
-                            <p>
-                                This isn't the end of our memories.
-                                There are so many beautiful moments ahead.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- MEMORY 14 -->
-
-                    <div class="memory-card">
-
-                        <div class="photo">
-                            <img src="images/photo 14.jpeg"
-                                alt="Memory with Aiman">
-                        </div>
-
-                        <div class="memory-info">
-
-                            <span>
-                                Memory #14
-                            </span>
-
-                            <h3>
-                                Always one of my favorites 💞
-                            </h3>
-
-                            <p>
-                                No matter how many years pass,
-                                this will always be a special memory.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- FRIENDSHIP TIMELINE -->
-
-        <section class="timeline-section section">
-
-            <div class="container">
-
-                <p class="label">
-                    Our little story
-                </p>
-
-                <h2>
-                    How we got here 🫶
-                </h2>
-
-
-                <div class="timeline">
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-number">
-                            01
-                        </div>
-
-                        <div class="timeline-content">
-
-                            <h3>
-                                The Beginning ✨
-                            </h3>
-
-                            <p>
-                                Every beautiful friendship starts
-                                with a simple hello.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-number">
-                            02
-                        </div>
-
-                        <div class="timeline-content">
-
-                            <h3>
-                                Then came the chaos 😂
-                            </h3>
-
-                            <p>
-                                Random conversations,
-                                stupid jokes,
-                                endless laughter...
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-number">
-                            03
-                        </div>
-
-                        <div class="timeline-content">
-
-                            <h3>
-                                Somehow, you became my person ❤️
-                            </h3>
-
-                            <p>
-                                And somewhere along the way,
-                                a normal friendship became something
-                                truly special.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="timeline-item">
-
-                        <div class="timeline-number">
-                            04
-                        </div>
-
-                        <div class="timeline-content">
-
-                            <h3>
-                                More memories to come 🌙
-                            </h3>
-
-                            <p>
-                                This story isn't ending here.
-                                We still have so many memories
-                                to make.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- LETTER -->
-
-        <section class="letter-section section">
-
-            <div class="container">
-
-                <p class="label">
-                    From my heart
-                </p>
-
-
-                <div class="letter">
-
-                    <div class="letter-decoration">
-                        ♡
-                    </div>
-
-                    <h2>
-                        Dear Aiman,
-                    </h2>
-
-                    
-
-                    <p>
-                        🎂✨ **HAPPY BIRTHDAY TO MY BEAUTIFUL BESTIE!** 🥹💗🎀
-
-Happy Birthday to the one person who makes my life a little brighter, my bad days a little easier, and my happy days even more special. 🫶🏻💞 I honestly don't know what I would do without you. You are not just my best friend, you are a very special part of my life, my comfort person, my partner in nonsense, my secret keeper, and one of the people I can always count on. 🥹❤️
-
-On your special day, I just want you to know how grateful I am for you. 🌷✨ Thank you for all the laughs, all the stupid conversations, all the random memories, all the late-night talks, all the little moments, and even all the times we annoyed each other 😂😭. Every single memory with you has a special place in my heart. 💕🦋
-
-**Tum sirf meri bestie nahi ho, tum meri life ka woh khoobsurat hissa ho jise main kabhi lose nahi karna chahti.** 🥺❤️ Tumhare saath guzra hua har chota sa moment mere liye bohat special hai. Kabhi hum hasti hain bina kisi reason ke 😂, kabhi ek dusre ko tang karti hain 😭😂, aur kabhi bas ek dusre ki baat sun kar hi dil halka ho jata hai. 🫂💗
-
-I hope this new year of your life brings you everything your heart wishes for. 🌸✨ May you always have reasons to smile, people who truly love you, and the courage to chase every dream you have. 💫 May Allah bless you with endless happiness, good health, success, peace, and lots and lots of beautiful moments. Ameen. 🤲🏻❤️
-
-**Allah tumhari har dua qabool kare, tumhari har mushkil asaan kare, tumhe har buri nazar aur har buri cheez se mehfooz rakhe, aur tumhari zindagi ko khushiyon se bhar de. Ameen. 🤍🤲🏻✨**
-
-I wish you a life full of beautiful surprises, genuine happiness, unforgettable adventures, and people who appreciate your beautiful heart. 🥹🌷 You deserve so much love and happiness because you have such a beautiful soul. Never let anyone make you feel like you are not enough, because you are more special than you realize. 💗🦋
-
-And please remember, no matter how much we grow up, how much life changes, or how far we go, **you will always have a special place in my heart.** 🫶🏻🥹 Some friendships are temporary, but I genuinely hope ours stays forever. ♾️❤️ I want us to look back years from now and laugh about all the crazy things we did, all our silly pictures, our inside jokes, and all the memories we made together. 😂📸💕
-
-**Mujhe bas yahi dua hai ke humari dosti hamesha aisi hi rahe — thori pagal, thori annoying, bohat zyada funny, lekin dil se real.** 😂❤️🫂 Chahe zindagi kitni bhi change ho jaye, I hope we always find our way back to each other. 🌙✨
-
-Thank you for being YOU. ❤️ Thank you for existing. Thank you for being someone I can laugh with, cry with, talk to, and be completely myself around. 🥹🫂 You have no idea how much your presence means to me.
-
-So today, forget all the stress, forget all the worries, and just enjoy YOUR DAY! 👑🎂🎉 Eat lots of cake 🍰😂, take a million pictures 📸✨, smile until your cheeks hurt 😭💗, and make the most beautiful memories. Because today is all about **YOU**, birthday girl! 🎀👑💕
-
-**Happy Birthday once again, meri jaan, meri bestie, meri partner in crime!** 🥹❤️🎂 May this year be kinder, happier, brighter, and more beautiful than every year before. 🌸✨
-
-**Stay happy. Stay blessed. Stay crazy. Stay exactly the way you are.** 🫶🏻💗
-
-And remember...
-
-**No matter what happens, no matter how much time passes, you will always be one of my favorite people in this whole world.** 🌎❤️🫂
-
-🎂🎉 **HAPPY BIRTHDAY BESTIE!** 🎉🎂
-🥹💗 **Love youuu so much!** 🫶🏻🎀
-🌷✨ **May all your dreams come true. Ameen.** 🤲🏻❤️
-♾️🫂 **Best friends today, tomorrow & always.** 💕🦋
-
-                    </p>
-
-                    <p>
-                        Thank you for all the laughs,
-                        all the random conversations,
-                        all the memories and even all
-                        the stupid moments.
-                    </p>
-
-                
-                        </strong>
-                    </p>
-
-                    
-
-                   
-
-                    <p class="signature">
-
-                        Always your bestie,
-
-                        <br>
-
-                        <span>
-                            Me ❤️
-                        </span>
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- FINAL SURPRISE -->
-
-        <section class="surprise-section">
-
-            <div class="surprise-content">
-
-                <p class="label">
-                    Wait...
-                </p>
-
-                <h2>
-                    I have one last thing for you 🎁
+                    Dear Aimen, 💗
                 </h2>
 
                 <p>
-                    Don't click unless you're ready...
+                    Happy Birthday to the one person who makes my life
+                    a little brighter, my bad days a little easier,
+                    and my happy days even more special. 🫶🏻💞
                 </p>
 
-                <button id="surpriseButton">
-                    Open the final surprise ✨
-                </button>
+                <p>
+                    I honestly don't know what I would do without you.
+                    You are not just my best friend, you are a very special
+                    part of my life, my comfort person, my partner in nonsense,
+                    my secret keeper, and one of the people I can always count on. 🥹❤️
+                </p>
 
+                <p>
+                    On your special day, I just want you to know how grateful
+                    I am for you. 🌷✨ Thank you for all the laughs, all the
+                    stupid conversations, all the random memories, all the
+                    late-night talks, all the little moments, and even all
+                    the times we annoyed each other. 😂😭
+                </p>
 
-                <div id="finalSurprise" class="final-surprise hidden">
+                <p>
+                    <strong>
+                        Tum sirf meri bestie nahi ho, tum meri life ka woh
+                        khoobsurat hissa ho jise main kabhi lose nahi karna chahti. 🥺❤️
+                    </strong>
+                </p>
 
-                    <div class="cake">
-                        🎂
-                    </div>
+                <p>
+                    Tumhare saath guzra hua har chota sa moment mere liye
+                    bohat special hai. Kabhi hum hasti hain bina kisi reason ke 😂,
+                    kabhi ek dusre ko tang karti hain 😭😂, aur kabhi bas ek
+                    dusre ki baat sun kar hi dil halka ho jata hai. 🫂💗
+                </p>
 
-                    <h2>
-                        Make a wish, Aimen. ✨
-                    </h2>
+                <p>
+                    I hope this new year of your life brings you everything
+                    your heart wishes for. 🌸✨ May you always have reasons
+                    to smile, people who truly love you, and the courage to
+                    chase every dream you have. 💫
+                </p>
 
-                    <p>
-                        May this year be softer,
-                        happier and more beautiful
-                        than you ever imagined.
+                <p>
+                    <strong>
+                        Allah tumhari har dua qabool kare, tumhari har mushkil
+                        asaan kare, tumhe har buri nazar aur har buri cheez se
+                        mehfooz rakhe, aur tumhari zindagi ko khushiyon se bhar de.
+                        Ameen. 🤍🤲🏻✨
+                    </strong>
+                </p>
 
-                        <br><br>
+                <p>
+                    I wish you a life full of beautiful surprises, genuine
+                    happiness, unforgettable adventures, and people who
+                    appreciate your beautiful heart. 🥹🌷
+                    You deserve so much love and happiness because you have
+                    such a beautiful soul. 💗🦋
+                </p>
 
-                  Again Happy Birthday, Aiman.
+                <p>
+                    And please remember, no matter how much we grow up,
+                    how much life changes, or how far we go,
+                    <strong>
+                        you will always have a special place in my heart.
+                    </strong>
+                    🫶🏻🥹
+                </p>
 
-                        <br>
+                <p>
+                    Some friendships are temporary, but I genuinely hope
+                    ours stays forever. ♾️❤️ I want us to look back years
+                    from now and laugh about all the crazy things we did,
+                    all our silly pictures, our inside jokes, and all the
+                    memories we made together. 😂📸💕
+                </p>
 
-                        I love you, bestie. ❤️
-                    </p>
+                <p>
+                    <strong>
+                        Mujhe bas yahi dua hai ke humari dosti hamesha aisi hi rahe —
+                        thori pagal, thori annoying, bohat zyada funny,
+                        lekin dil se real. 😂❤️🫂
+                    </strong>
+                </p>
 
-                    <div class="big-hearts">
-                        ❤️ ❤️ ❤️
-                    </div>
+                <p>
+                    Chahe zindagi kitni bhi change ho jaye,
+                    I hope we always find our way back to each other. 🌙✨
+                </p>
 
-                </div>
+                <p>
+                    Thank you for being YOU. ❤️ Thank you for existing.
+                    Thank you for being someone I can laugh with, cry with,
+                    talk to, and be completely myself around. 🥹🫂
+                </p>
+
+                <p>
+                    So today, forget all the stress, forget all the worries,
+                    and just enjoy YOUR DAY! 👑🎂🎉
+                    Eat lots of cake 🍰😂, take a million pictures 📸✨,
+                    smile until your cheeks hurt 😭💗,
+                    and make the most beautiful memories.
+                </p>
+
+                <p>
+                    Because today is all about <strong>YOU</strong>,
+                    birthday girl! 🎀👑💕
+                </p>
+
+                <p>
+                    Happy Birthday once again, meri jaan, meri bestie,
+                    meri partner in crime! 🥹❤️🎂
+                </p>
+
+                <p>
+                    May this year be kinder, happier, brighter,
+                    and more beautiful than every year before. 🌸✨
+                </p>
+
+                <p>
+                    <strong>
+                        Stay happy. Stay blessed. Stay crazy.
+                        Stay exactly the way you are. 🫶🏻💗
+                    </strong>
+                </p>
+
+                <p>
+                    And remember...
+                </p>
+
+                <p>
+                    <strong>
+                        No matter what happens, no matter how much time passes,
+                        you will always be one of my favorite people in this whole world. 🌎❤️🫂
+                    </strong>
+                </p>
+
+                <p class="signature">
+                    Love youuu so much! ❤️<br>
+                    Always your bestie, 🫶🏻
+                </p>
 
             </div>
 
-        </section>
+
+            <div style="margin-top:40px;">
+
+                <button class="back-button" onclick="goToPage(5)">
+                    ← Back
+                </button>
+
+                <button class="next-button" onclick="goToPage(7); celebrate();">
+                    One Last Surprise 🎁
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
+    <!-- =====================================
+         PAGE 7 - FINAL SURPRISE
+    ====================================== -->
 
-        <!-- FOOTER -->
+    <section id="page7" class="birthday-page">
 
-        <footer>
+        <div class="page-box">
 
-            <p>
-                Made with way too much love ❤️
+            <div class="final-cake">
+                🎂
+            </div>
+
+            <div class="page-number">
+                One last thing...
+            </div>
+
+            <h1 class="final-title">
+                Make a Wish,
+                <br>
+                Aimen. ✨
+            </h1>
+
+            <p class="page-text">
+
+                May this year be softer,
+                happier and more beautiful
+                than you ever imagined.
+
+                <br><br>
+
+                May Allah fill your life with
+                endless happiness, peace,
+                success and love. 🤲🏻❤️
+
+                <br><br>
+
+                Happy Birthday, Aimen! 🎂🎉
+
+                <br>
+
+                I love you, bestie. ❤️
+
             </p>
 
-            <p>
-                For Aiman • Always ✨
-            </p>
+            <div class="final-hearts">
+                ❤️ 💗 ❤️ 💕 ❤️
+            </div>
 
-        </footer>
+            <br>
 
+            <button class="back-button" onclick="goToPage(6)">
+                ← Back
+            </button>
 
-    </main>
+            <button class="next-button" onclick="celebrate();">
+                Celebrate Again 🎉
+            </button>
 
+        </div>
+
+    </section>
 
 
     <!-- CONFETTI -->
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
-    <script src="script.js"></script>
+
+    <script>
+
+        /* =========================================
+           PAGE NAVIGATION
+        ========================================= */
+
+        function goToPage(number) {
+
+            document.querySelectorAll(".birthday-page").forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            const selectedPage = document.getElementById("page" + number);
+
+            if (selectedPage) {
+                selectedPage.classList.add("active");
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================================
+           CONFETTI
+        ========================================= */
+
+        function celebrate() {
+
+            if (typeof confetti === "function") {
+
+                confetti({
+                    particleCount: 180,
+                    spread: 100,
+                    origin: {
+                        y: 0.6
+                    }
+                });
+
+                setTimeout(function() {
+
+                    confetti({
+                        particleCount: 120,
+                        spread: 120,
+                        origin: {
+                            x: 0,
+                            y: 0.7
+                        }
+                    });
+
+                    confetti({
+                        particleCount: 120,
+                        spread: 120,
+                        origin: {
+                            x: 1,
+                            y: 0.7
+                        }
+                    });
+
+                }, 500);
+
+            }
+
+        }
+
+
+        /* =========================================
+           PHOTO FALLBACK
+           
+           Agar image "images/" folder mein ho
+           to woh use hogi.
+
+           Agar GitHub par photo root folder mein
+           ho to automatically root wali photo
+           load ho jayegi.
+        ========================================= */
+
+        document.querySelectorAll(".new-photo img").forEach(function(image) {
+
+            image.addEventListener("error", function() {
+
+                const rootImage = image.getAttribute("data-root");
+
+                if (rootImage && image.src.indexOf(rootImage) === -1) {
+
+                    image.src = rootImage;
+
+                }
+
+            });
+
+        });
+
+
+        /* =========================================
+           START WITH PAGE 1
+        ========================================= */
+
+        goToPage(1);
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+
 
 </body>
 
 </html>
-```
